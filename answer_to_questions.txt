@@ -1,0 +1,13 @@
+﻿Defining the problem
+
+For Illumina sequencing, it is possible to process multiple samples at the same time. This is done by attaching unique sequences called “barcodes” near the end of the sequence prior to entering the flow cell. This is known as “multiplexing.” Then, after sequencing is complete, we can use programming to separate out the barcodes into independent files. This is known as “demultiplexing.” However, it is possible that the indexes get mixed up when they enter the flow cell, perhaps due to incorrect barcode addition along with extra primers sitting on the flow cell. This is a common phenomena known as “index hopping.” It is also possible that the indexes cannot be resolved, leading to “N” base pairs, or the barcodes do not match any of the barcodes we put into the flow cell. As a result, when demultiplexing, we need to separate the correct index pairs from the index hopped pairs (because we ultimately don’t know which index was hopped) and their attached sequenced. Furthermore, we need to separate unresolved indexes and their accompanied sequences to different files. 
+
+Output
+
+24 correct index pairs forward strand files, 24 correct index pairs reverse strand files, 1 index hopped forward strand file, 1 index hopped reverse strand file, 1 “undetermined” forward strand file, and 1 “undetermined” reverse strand file, making for 52 total output files. Furthermore, it would be great information to know the percentage of correct index pairs, percentage of index hopped pairs, and percentage of “undetermined” pairs. In addition, to see if there’s a pattern in index hopping, a heat map of the indexes and number of times they map to each other would be helpful. 
+
+Unit tests
+
+Four files were created which contain an example of each possible outcome above. In each file, the first record is an index hopped read, the second is a correctly paired read, and the third is an “undetermined” read. The output will be 6 files: 1 correct index pairs forward strand files, 1 correct index pairs reverse strand file, 1 index hopped forward strand file, 1 index hopped reverse strand file, 1 undetermined forward strand file, and 1 undetermined reverse strand file. They are named as follows:
+
+R1_short_test.fastq, R2_short_test.fastq, R3_short_test.fastq, and R4_short_test.fastq
